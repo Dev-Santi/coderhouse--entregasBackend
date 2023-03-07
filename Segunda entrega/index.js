@@ -20,7 +20,7 @@ const executeApp = async () => {
 
   console.log("____________ getProducts ____________");
 
-  await Test.getProducts();
+  // await Test.getProducts();
 
   console.log("____________ getProductById ____________");
 
@@ -28,11 +28,12 @@ const executeApp = async () => {
 
   console.log("____________ updateProduct ____________");
 
-  // await Test.updateProduct(-ID-, { price: 6548 });
+  // await Test.updateProduct(-ID-, { price: 10 });
 
   console.log("____________ deleteProduct ____________");
 
   // await Test.deleteProduct(-ID-);
 };
 
-executeApp(); */
+executeApp();
+ */

@@ -14,6 +14,7 @@ class ProductManager {
 
   async #getFileParsed() {
     try {
+      await this.#filenameExists();
       const file = await fs.promises.readFile(this.filename, "utf-8");
       const fileParsed = JSON.parse(file);
       return fileParsed;
@@ -36,7 +37,6 @@ class ProductManager {
           id: Date.now(),
           ...newProduct,
         };
-        await this.#filenameExists();
         const fileParsed = await this.#getFileParsed();
         fileParsed.push(product);
         await fs.promises.writeFile(this.filename, JSON.stringify(fileParsed));
@@ -61,7 +61,6 @@ class ProductManager {
 
   async getProductById(ident) {
     try {
-      await this.#filenameExists();
       const fileParsed = await this.#getFileParsed();
 
       const indexOfProduct = fileParsed.findIndex(
@@ -77,9 +76,7 @@ class ProductManager {
 
   async updateProduct(ident, field) {
     try {
-      await this.#filenameExists();
       const fileParsed = await this.#getFileParsed();
-
       const indexOfProduct = fileParsed.findIndex(
         (product) => product.id == ident
       );
@@ -99,7 +96,6 @@ class ProductManager {
 
   async deleteProduct(ident) {
     try {
-      await this.#filenameExists();
       const fileParsed = await this.#getFileParsed();
 
       const indexOfProduct = fileParsed.findIndex(
